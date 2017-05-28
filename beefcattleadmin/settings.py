@@ -25,7 +25,7 @@ SECRET_KEY = 'l7gj5jsns76%_d=kq2v7h)1fk=--peh1y0pysg3dw0ec*8vfw^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['beefcattleadmin.herokuapp.com',]
+ALLOWED_HOSTS = ['beefcattleadmin.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -119,4 +119,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
