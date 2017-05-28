@@ -25,7 +25,7 @@ SECRET_KEY = 'l7gj5jsns76%_d=kq2v7h)1fk=--peh1y0pysg3dw0ec*8vfw^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['beefcattleadmin.herokuapp.com',]
 
 
 # Application definition
