@@ -2,3 +2,4 @@ Django==1.11
 dj-database-url==0.4.1
 gunicorn==19.6.0
 django-grappelli==2.10.1
+whitenoise==3.3.0
