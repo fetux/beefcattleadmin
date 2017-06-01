@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['beefcattleadmin.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'grappelli',
+    'nested_inline',
 
     'django.contrib.admin',
     'django.contrib.auth',
