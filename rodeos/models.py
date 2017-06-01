@@ -1,13 +1,6 @@
 from django.db import models
 
-class Campo(models.Model):
-
-    nombre = models.CharField(max_length=25)
-
-class Potrero(models.Model):
-
-    nombre = models.CharField(max_length=25)
-    campo = models.ForeignKey(Campo, on_delete=models.CASCADE)
+from campos.models import Potrero
 
 class Rodeo(models.Model):
 
@@ -21,6 +14,9 @@ class Rodeo(models.Model):
         return '{}'.format(self.nombre)
 
 class Stock(models.Model):
+    class Meta:
+        verbose_name = 'Animal'
+        verbose_name_plural = 'Animales'
 
     VV = 'VV'
     VE = 'VE'
@@ -64,54 +60,3 @@ class Stock(models.Model):
     def __str__(self):
         """Return a string representation of this Stock."""
         return '{}'.format( self.rodeo.nombre + self._get_animal_name() + " " + str(self.cantidad))
-
-class Activity(models.Model):
-
-    stock = models.ForeignKey(Stock)
-    fecha = models.DateTimeField(auto_now_add=True)
-
-
-class ActivityM(Activity):
-
-    cantidad = models.IntegerField()
-
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            #This code only happens if the objects is
-            #not in the database yet. Otherwise it would
-            #have pk
-            self.stock.cantidad -= self.cantidad
-            self.stock.rodeo.cantidad -= self.cantidad
-            self.stock.save()
-            self.stock.rodeo.save()
-        super(ActivityM, self).save(*args, **kwargs)
-
-    def delete(self, *args, **kwargs):
-        self.stock.cantidad += self.cantidad
-        self.stock.rodeo.cantidad += self.cantidad
-        self.stock.save()
-        self.stock.rodeo.save()
-        super(ActivityMovement, self).delete(*args, **kwargs)
-
-class ActivityMovement(Activity):
-
-    cantidad = models.IntegerField()
-    stock_destino = models.ForeignKey(Stock, related_name='stock_destino')
-
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            #This code only happens if the objects is
-            #not in the database yet. Otherwise it would
-            #have pk
-            self.stock.cantidad -= self.cantidad
-            self.stock_destino.cantidad += self.cantidad
-            self.stock.save()
-            self.stock_destino.save()
-        super(ActivityMovement, self).save(*args, **kwargs)
-
-    def delete(self, *args, **kwargs):
-        self.stock.cantidad += self.cantidad
-        self.stock_destino.cantidad -= self.cantidad
-        self.stock.save()
-        self.stock_destino.save()
-        super(ActivityMovement, self).delete(*args, **kwargs)
