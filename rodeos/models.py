@@ -20,8 +20,8 @@ class Stock(models.Model):
 
     VV = 'VV'
     VE = 'VE'
-    VQ = 'VQ'
-    TO = 'TO'
+    VQ = 'Q'
+    TR = 'TR'
     TA = 'TA'
     NT = 'NT'
     NO = 'NO'
@@ -31,7 +31,7 @@ class Stock(models.Model):
         (VV, 'VACA VIENTRE'),
         (VE, 'VACA ENGORDE'),
         (VQ, 'VAQUILLONA'),
-        (TO, 'TERNERO'),
+        (TR, 'TERNERO'),
         (TA, 'TERNERA'),
         (NT, 'NOVILLITO'),
         (NO, 'NOVILLO'),

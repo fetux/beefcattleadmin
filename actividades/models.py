@@ -5,7 +5,8 @@ from rodeos.models import Stock
 class Activity(models.Model):
 
     stock = models.ForeignKey(Stock)
-    fecha = models.DateTimeField(auto_now_add=True)
+    fecha = models.DateField()
+    comentario = models.CharField(max_length=255)
 
 
 class ActivityM(Activity):
@@ -58,3 +59,12 @@ class ActivityMovement(Activity):
         self.stock.save()
         self.stock_destino.save()
         super(ActivityMovement, self).delete(*args, **kwargs)
+
+
+class ActivitySanitario(Activity):
+    class Meta:
+        verbose_name = 'Registro Sanitario'
+        verbose_name_plural = 'Registros Sanitarios'
+
+    cantidad = models.IntegerField()
+
