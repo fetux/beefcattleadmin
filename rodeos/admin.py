@@ -12,11 +12,11 @@ class AnimalAdminInline(NestedStackedInline):
         min_num = 0
 
 class AnimalAdmin(admin.ModelAdmin):
-    list_display = ('rodeo', 'nombre', 'fecha_muerte')
+    list_display = ('rodeo', 'nombre', 'unidad_nutricional', 'fecha_muerte')
 
 
 class RodeoAdmin(NestedModelAdmin):
-    list_display = ('fecha', 'nombre', 'cantidad')
+    list_display = ('fecha', 'nombre', 'cantidad', 'demanda_nutricional')
     inlines = [
         AnimalAdminInline,
     ]

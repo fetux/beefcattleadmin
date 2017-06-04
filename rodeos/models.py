@@ -1,3 +1,5 @@
+from functools import reduce
+
 from django.db import models
 
 from campos.models import Potrero
@@ -10,6 +12,11 @@ class Rodeo(models.Model):
 
     def cantidad(self):
         return self.animal_set.filter(fecha_muerte=None).count()
+
+    def demanda_nutricional(self):
+        return reduce(lambda demanda, animal: demanda + animal.unidad_nutricional,
+                      self.animal_set.filter(fecha_muerte=None),
+                      0)
 
     def __str__(self):
         """Return a string representation of this Rodeo."""
@@ -41,6 +48,7 @@ class Animal(models.Model):
     )
 
     nombre = models.CharField(max_length=2, choices=ANIMAL_CHOICES)
+    unidad_nutricional = models.IntegerField()
     rodeo = models.ForeignKey(Rodeo)
     fecha_muerte = models.DateField(null=True, blank=True, default=None)
 
