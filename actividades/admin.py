@@ -3,29 +3,19 @@ from django.contrib import admin
 from .models import ActivityM, ActivityMovement, ActivitySanitario
 
 class ActivityMAdmin(admin.ModelAdmin):
-    list_display = ('fecha', 'rodeo', 'stock', 'cantidad')
+    list_display = ('fecha', 'rodeo', 'animal')
 
     def rodeo(self, obj):
-        return obj.stock.rodeo.nombre
+        return obj.animal.rodeo.nombre
     rodeo.short_description = 'Rodeo'
-    rodeo.admin_order_field = 'stock__rodeo__nombre'
+    rodeo.admin_order_field = 'animal__rodeo__nombre'
 
 class ActivityMovementAdmin(admin.ModelAdmin):
-    list_display = ('fecha', 'stock', 'stock_destino', 'cantidad')
-
-    def rodeo(self, obj):
-        return obj.stock.rodeo.nombre
-    rodeo.short_description = 'Rodeo'
-    rodeo.admin_order_field = 'stock__rodeo__nombre'
+    list_display = ('fecha', 'animal', 'rodeo_destino')
 
 
 class ActivitySanitarioAdmin(admin.ModelAdmin):
-    list_display = ('fecha', 'stock', 'cantidad', 'comentario')
-
-    def rodeo(self, obj):
-        return obj.stock.rodeo.nombre
-    rodeo.short_description = 'Rodeo'
-    rodeo.admin_order_field = 'stock__rodeo__nombre'
+    list_display = ('fecha', 'animal', 'comentario')
 
 
 admin.site.register(ActivityM, ActivityMAdmin)

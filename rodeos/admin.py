@@ -2,23 +2,23 @@ from django.contrib import admin
 
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin
 
-from .models import Rodeo, Stock
+from .models import Rodeo, Animal
 
 
-class StockAdminInline(NestedStackedInline):
-        model = Stock
-        fields = ['rodeo', 'animal', 'cantidad']
+class AnimalAdminInline(NestedStackedInline):
+        model = Animal
+        fields = ['nombre']
         extra = 0
         min_num = 0
 
-class StockAdmin(admin.ModelAdmin):
-    list_display = ('rodeo', 'animal', 'cantidad')
+class AnimalAdmin(admin.ModelAdmin):
+    list_display = ('rodeo', 'nombre', 'fecha_muerte')
 
 
 class RodeoAdmin(NestedModelAdmin):
     list_display = ('fecha', 'nombre', 'cantidad')
     inlines = [
-        StockAdminInline,
+        AnimalAdminInline,
     ]
 
     def get_ordering(self, request):
@@ -26,4 +26,4 @@ class RodeoAdmin(NestedModelAdmin):
 
 
 admin.site.register(Rodeo, RodeoAdmin)
-admin.site.register(Stock, StockAdmin)
+admin.site.register(Animal, AnimalAdmin)
