@@ -1,0 +1,16 @@
+# gitlab ci file
+stages:
+    - deploy
+
+job:development:
+    image: "python:3.5.2"
+    services:
+        - "postgres:9.6"
+    stage: deploy
+    script:
+        - apt-get update -qy
+        - apt-get install -y ruby-dev
+        - gem install dpl
+        - dpl --provider=heroku --app=beefcattleadmin --api-key=$HEROKU_STAGING_API_KEY
+    only:
+        - development
