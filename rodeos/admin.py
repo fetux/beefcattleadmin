@@ -16,10 +16,18 @@ class AnimalAdmin(admin.ModelAdmin):
 
 
 class RodeoAdmin(NestedModelAdmin):
-    list_display = ('fecha', 'nombre', 'cantidad', 'demanda_nutricional')
+    list_display = ('nombre', 'cantidad', 'demanda_nutricional', 'get_fecha',)
     inlines = [
         AnimalAdminInline,
     ]
+
+    def cantidad(self, obj):
+        return obj.cantidad()
+    cantidad.short_description = "Cantidad de Animales"
+
+    def get_fecha(self, obj):
+        return obj.fecha
+    get_fecha.short_description = "Fecha de creación"
 
     def get_ordering(self, request):
         return ['-fecha']
