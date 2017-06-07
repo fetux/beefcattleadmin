@@ -22,33 +22,27 @@ class Rodeo(models.Model):
         """Return a string representation of this Rodeo."""
         return '{}'.format(self.nombre)
 
+
+class AnimalCategoria(models.Model):
+    class Meta:
+        verbose_name = 'Categoría de Animal'
+        verbose_name_plural = 'Categorías de Animales'
+
+    nombre = models.CharField(max_length=30)
+    unidad_nutricional = models.FloatField()
+
+    def __str__(self):
+        """Return a string representation of this AnimalCategoria."""
+        return '{}'.format(self.nombre)
+
+
 class Animal(models.Model):
     class Meta:
         verbose_name = 'Animal'
         verbose_name_plural = 'Animales'
 
-    VV = 'VV'
-    VE = 'VE'
-    VQ = 'Q'
-    TR = 'TR'
-    TA = 'TA'
-    NT = 'NT'
-    NO = 'NO'
-    TO = 'TO'
-
-    ANIMAL_CHOICES = (
-        (VV, 'VACA VIENTRE'),
-        (VE, 'VACA ENGORDE'),
-        (VQ, 'VAQUILLONA'),
-        (TR, 'TERNERO'),
-        (TA, 'TERNERA'),
-        (NT, 'NOVILLITO'),
-        (NO, 'NOVILLO'),
-        (TO, 'TORO'),
-    )
-
-    nombre = models.CharField(max_length=2, choices=ANIMAL_CHOICES)
-    unidad_nutricional = models.IntegerField()
+    # categoria = models.ForeignKey(AnimalCategoria, on_delete=models.CASCADE)
+    unidad_nutricional = models.FloatField()
     rodeo = models.ForeignKey(Rodeo)
     fecha_muerte = models.DateField(null=True, blank=True, default=None)
 
