@@ -46,12 +46,7 @@ class Animal(models.Model):
     rodeo = models.ForeignKey(Rodeo)
     fecha_muerte = models.DateField(null=True, blank=True, default=None)
 
-    def _get_animal_name(self):
-        for item in self.ANIMAL_CHOICES:
-            if item[0] == self.nombre:
-                return item[1]
-        return ''
 
     def __str__(self):
         """Return a string representation of this Animal."""
-        return '{}'.format( self.rodeo.nombre +"#"+ str(self.id) + " " + self._get_animal_name())
+        return '{}'.format( self.rodeo.nombre +"#"+ str(self.id) + " " + self.categoria.nombre)
