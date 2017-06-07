@@ -2,17 +2,19 @@ from django.contrib import admin
 
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin
 
-from .models import Rodeo, Animal
+from .models import Rodeo, Animal, AnimalCategoria
 
+class AnimalCategoriaAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'unidad_nutricional')
 
 class AnimalAdminInline(NestedStackedInline):
         model = Animal
-        fields = ['nombre']
+        fields = ['categoria']
         extra = 0
         min_num = 0
 
 class AnimalAdmin(admin.ModelAdmin):
-    list_display = ('rodeo', 'nombre', 'unidad_nutricional', 'fecha_muerte')
+    list_display = ('rodeo', 'categoria', 'unidad_nutricional', 'fecha_muerte')
 
 
 class RodeoAdmin(NestedModelAdmin):
@@ -35,3 +37,4 @@ class RodeoAdmin(NestedModelAdmin):
 
 admin.site.register(Rodeo, RodeoAdmin)
 admin.site.register(Animal, AnimalAdmin)
+admin.site.register(AnimalCategoria, AnimalCategoriaAdmin)

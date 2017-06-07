@@ -1,0 +1,24 @@
+- model: rodeos.animalcategoria
+  pk: 1
+  fields: {nombre: 'VACA VIENTRE', unidad_nutricional: 1}
+- model: rodeos.animalcategoria
+  pk: 2
+  fields: {nombre: 'VACA ENGORDE', unidad_nutricional: 1}
+- model: rodeos.animalcategoria
+  pk: 3
+  fields: {nombre: 'VAQUILLONA', unidad_nutricional: 1}
+- model: rodeos.animalcategoria
+  pk: 4
+  fields: {nombre: 'TERNERO', unidad_nutricional: 1}
+- model: rodeos.animalcategoria
+  pk: 5
+  fields: {nombre: 'TERNERA', unidad_nutricional: 1}
+- model: rodeos.animalcategoria
+  pk: 6
+  fields: {nombre: 'NOVILLITO', unidad_nutricional: 1}
+- model: rodeos.animalcategoria
+  pk: 7
+  fields: {nombre: 'NOVILLO', unidad_nutricional: 1}
+- model: rodeos.animalcategoria
+  pk: 8
+  fields: {nombre: 'TORO', unidad_nutricional: 1}
