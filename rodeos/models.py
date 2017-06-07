@@ -41,7 +41,7 @@ class Animal(models.Model):
         verbose_name = 'Animal'
         verbose_name_plural = 'Animales'
 
-    # categoria = models.ForeignKey(AnimalCategoria, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(AnimalCategoria, on_delete=models.CASCADE)
     unidad_nutricional = models.FloatField()
     rodeo = models.ForeignKey(Rodeo)
     fecha_muerte = models.DateField(null=True, blank=True, default=None)

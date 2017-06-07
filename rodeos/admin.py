@@ -9,12 +9,12 @@ class AnimalCategoriaAdmin(admin.ModelAdmin):
 
 class AnimalAdminInline(NestedStackedInline):
         model = Animal
-        fields = ['rodeo']
+        fields = ['rodeo', 'categoria', 'unidad_nutricional']
         extra = 0
         min_num = 0
 
 class AnimalAdmin(admin.ModelAdmin):
-    list_display = ('rodeo', 'unidad_nutricional', 'fecha_muerte')
+    list_display = ('rodeo', 'categoria', 'unidad_nutricional', 'fecha_muerte')
 
 
 class RodeoAdmin(NestedModelAdmin):
